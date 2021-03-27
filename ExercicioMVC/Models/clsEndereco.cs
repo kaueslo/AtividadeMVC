@@ -51,7 +51,7 @@ namespace ExercicioMVC.Models
 			try
 			{
 				string strSql = "UPDATE Endereco SET Endereco = '" + Endereco + "',";
-					   strSql += " Bairro = '" + Bairro + "1, CEP = '" + CEP + "',";
+					   strSql += " Bairro = '" + Bairro + "', CEP = '" + CEP + "',";
 					   strSql += " idCliente = " + idCliente + "WHERE idEndereco = " + idEndereco;
 
 				DataTable dt = clsConexao.ExecutarSql(strSql);
