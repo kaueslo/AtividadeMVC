@@ -171,5 +171,36 @@ namespace ExercicioMVC.Controllers
 			}
 		}
 
+        //Fazendo o método para deletar o Cliente
+        [HttpPost]
+        public JsonResult ExcluirCliente(int intIdCliente)
+        {
+            try
+            {
+
+                DeletarCliente(intIdCliente, Convert.ToString(Session["strConexaoBanco"]));
+
+
+                //Retorna uma variável com uma string interna para a View,
+                //Para validar o sucesso ou a falha, onde trataramos no catch
+                var Retorno = new
+                {
+                    resultado = "Sucesso"
+                };
+
+                return Json(Retorno, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                //Aqui trataramos o Retorno caso dê erro
+                var Retorno = new
+                {
+                    resultado = ex
+                };
+
+                return Json(Retorno, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }

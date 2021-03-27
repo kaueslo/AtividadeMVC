@@ -51,11 +51,13 @@
 		<button onclick="Salvar()">Salvar</button>
 	</div>
 
-	<div class="form-group">
-		<button onclick="Deletar()">Deletar</button>
-	</div>
-
-    <script>
+	@if (modoEditar == true)
+    {
+		<div class="form-group">
+			<button onclick="Deletar()">Deletar</button>
+		</div>
+    }
+<script>
 		function Salvar()
 		{
 			var id_Cliente = '@Model.strCliente.idCliente';
@@ -68,7 +70,33 @@
 				data: {
 					intIdCliente: id_Cliente,
 					strNomeCompleto: str_NomeCompleto
-                    
+
+                },
+                success: function (Retorno) {
+
+                    if (Retorno.resultado == 'Sucesso') {
+
+                            window.location = '@Url.Action("listaCliente", "Cliente")';
+
+                    }
+                    else {
+                        alert(Retorno.Resultado);
+                    }
+                }
+            })
+		}
+
+		function Deletar() {
+			var id_Cliente = '@Model.strCliente.idCliente';
+			
+
+			$.ajax({
+
+                type: 'POST',
+                url: '@Url.Action("ExcluirCliente", "Cliente")',
+				data: {
+                    intIdCliente: id_Cliente
+
                 },
                 success: function (Retorno) {
 
@@ -83,7 +111,7 @@
                 }
             })
         }
-    </script>
+</script>
 
 </body>
 
