@@ -1,0 +1,90 @@
+﻿@model ExercicioMVC.Models.clsCliente
+
+@{ 
+    Boolean modoEditar = false;
+
+	if(Model.strCliente.idCliente > 0)
+	{
+		modoEditar = true;
+	}
+
+}
+
+<!Doctype HTML>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	
+	@Html.Partial("Scripts")
+
+	@if(modoEditar == true)
+	{
+		<title>Alterar Cliente</title>
+	}
+	else 
+	{
+		<title>Cadastrar Cliente</title>
+	}
+</head>
+
+<body>
+	<div>
+		@if(modoEditar == true)
+		{
+			<h1>Alterar Cliente</h1>
+		}
+		else 
+		{
+			<h1>Cadastrar Cliente</h1>
+		}
+	</div>
+
+	<br />
+
+	<div class="form-group">
+		<label for="txtNomeCompleto">Nome Completo</label>
+		<input type="text" id="txtNomeCompleto" value="@Model.strCliente.nomeCompleto" />
+	</div>
+
+	<div class="form-group">
+		<button onclick="Salvar()">Salvar</button>
+	</div>
+
+	<div class="form-group">
+		<button onclick="Deletar()">Deletar</button>
+	</div>
+
+    <script>
+		function Salvar()
+		{
+			var id_Cliente = '@Model.strCliente.idCliente';
+			var str_NomeCompleto = $("#txtNomeCompleto").val();
+
+			$.ajax({
+
+                type: 'POST',
+                url: '@Url.Action("InserirAlterarCliente", "Cliente")',
+				data: {
+					intIdCliente: id_Cliente,
+					strNomeCompleto: str_NomeCompleto
+                    
+                },
+                success: function (Retorno) {
+
+                    if (Retorno.resultado == 'Sucesso') {
+
+                            window.location = '@Url.Action("listaCliente", "Cliente")';
+
+                    }
+                    else {
+                        alert(Retorno.Resultado);
+                    }
+                }
+            })
+        }
+    </script>
+
+</body>
+
+</html>
