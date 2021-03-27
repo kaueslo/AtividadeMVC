@@ -65,6 +65,10 @@ namespace ExercicioMVC.Models
 				//Comando SQL
 				string strSql = "UPDATE Cliente SET NomeCompleto = '" + nomeCompleto + "'";
 					   strSql += " WHERE idCliente = " + idCliente;
+
+				DataTable dt = clsConexao.ExecutarSql(strSql);
+
+				return;
 			}
 			catch(Exception ex)
 			{
@@ -105,7 +109,7 @@ namespace ExercicioMVC.Models
 		{
 			try
 			{
-				string strSql = "SELECT " + colunas + "FROM Cliente WHERE 1=1";
+				string strSql = "SELECT " + colunas + " FROM Cliente WHERE 1=1";
 
 				if(idCliente > 0)
 				{
