@@ -1,0 +1,43 @@
+﻿@model ExercicioMVC.Models.clsEndereco
+
+<!Doctype HTML>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Html.Partial("Scripts")
+
+    <title>Lista de Endereço</title>
+</head>
+<body>
+    <div class="botao">
+        <button onclick="window.location='@Url.Action("InserirEndereco","Endereco")'">Inserir Novo</button>
+    </div>
+
+    <br />
+
+    <div>
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome Completo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (System.Data.DataRow dr in Model.dtEndereco.Rows)
+                {
+                    <tr>
+                        <td>@dr["idEndereco"]</td>
+                        <td><a href="@Url.Action("alterarEndereco","Endereco", new { idCliente = Convert.ToString(dr["idEndereco"]) })">@dr["Endereco"]</a></td>
+                        <td>@dr["Bairro"]</td>
+                        <td>@dr["CEP"]</td>
+                        <td>@dr["idCliente"]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

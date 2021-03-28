@@ -1,0 +1,139 @@
+﻿@model ExercicioMVC.Models.clsEndereco
+
+@{ 
+    Boolean modoEditar = false;
+
+    if(Model.strEndereco.idCliente > 0)
+	{
+        modoEditar = true;
+	}
+}
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Html.Partial("Scripts")
+
+    @if(modoEditar == true)
+	{
+        <title>Alterar Endereço</title>
+	}
+	else 
+    {
+        <title>Cadastrar Endereço</title>
+    }
+</head>
+<body>
+    <div>
+        @if(modoEditar == true)
+		{
+            <h1>Alterar Endereço</h1>
+		}
+		else 
+        {
+            <h1>Cadastrar Endereço</h1>
+        }
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="txtEndereco">Endereço</label>
+        <input type="text" id="txtEndereco" value="@Model.strEndereco.Endereco" />
+    </div>
+
+    <div class="form-group">
+        <label for="txtBairro">Bairro</label>
+        <input type="text" id="txtBairro" value="@Model.strEndereco.Bairro" />
+    </div>
+
+    <div class="form-group">
+        <label for="txtCEP">CEP</label>
+        <input type="text" id="txtCEP" value="@Model.strEndereco.CEP" />
+    </div>
+
+    <div class="form-group">
+        <label for="txtIdCliente">Cliente</label>
+        <input type="number" id="intIdCliente" value="@Model.strEndereco.idCliente" />
+    </div>
+
+    <div class="form-group">
+        <button onclick="Salvar()">Salvar</button>
+    </div>
+
+    @if(modoEditar == true)
+	{
+        <div class="form-group">
+            <button onclick="Deletar()">Deletar</button>
+        </div>
+	}
+
+<script>
+
+        function Salvar()
+        {
+            var id_Endereco = '@Model.strEndereco.idEndereco';
+            var str_Endereco = $("#txtEndereco").val();
+            var str_Bairro = $("#txtBairro").val();
+            var str_CEP = $("#txtCEP").val();
+            var id_Cliente = $("#intIdCliente").val();
+
+			$.ajax({
+
+                type: 'POST',
+                url: '@Url.Action("InserirAlterarEndereco", "Endereco")',
+                data: {
+                    intIdEndereco: id_Endereco,
+                    strEndereco: str_Endereco,
+                    strBairro: str_Bairro,
+                    strCEP: str_CEP,
+                    intIdCliente: id_Cliente
+
+                },
+                success: function (Retorno) {
+
+                    if (Retorno.resultado == 'Sucesso') {
+
+                            window.location = '@Url.Action("listaEndereco", "Endereco")';
+
+                    }
+                    else {
+                        alert(Retorno.Resultado);
+                    }
+                }
+            })
+		}
+
+		function Deletar() {
+			var id_Endereco = '@Model.strEndereco.idEndereco';
+
+
+			$.ajax({
+
+                type: 'POST',
+                url: '@Url.Action("ExcluirEndereco", "Endereco")',
+				data: {
+                    intIdEndereco: id_Endereco
+
+                },
+                success: function (Retorno) {
+
+                    if (Retorno.resultado == 'Sucesso') {
+
+                            window.location = '@Url.Action("listaEndereco", "Endereco")';
+
+                    }
+                    else {
+                        alert(Retorno.Resultado);
+                    }
+                }
+            })
+        }
+
+</script>
+
+</body>
+</html>

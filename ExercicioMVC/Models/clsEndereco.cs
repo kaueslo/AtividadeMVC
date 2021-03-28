@@ -16,7 +16,7 @@ namespace ExercicioMVC.Models
 		public string Bairro;
 		public string CEP;
 
-		public string colunas = "idEndereco, Endereco, Bairro, CEP, idCliente";
+		public string colunas = " idEndereco, Endereco, Bairro, CEP, idCliente ";
 
 		public DataTable dtEndereco = new DataTable();
 
@@ -82,7 +82,7 @@ namespace ExercicioMVC.Models
 		{
 			try
 			{
-				string strSql = "SELECT " + colunas + "FROM Endereco";
+				string strSql = "SELECT " + colunas + " FROM Endereco";
 
 				return clsConexao.ExecutarSql(strSql);
 			}

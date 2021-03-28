@@ -16,7 +16,7 @@ namespace ExercicioMVC.Models
 		public string nomeCompleto;
 
 		//Criando a váriavel colunas, assim não se perde os dados quando for escrever no banco
-		public string colunas = "idCliente, NomeCompleto";
+		public string colunas = " idCliente, NomeCompleto ";
 
 		//Crio uma variável vazia DataTable onde usarei mais tarde no controller
 		public DataTable dtCliente = new DataTable();
@@ -36,7 +36,7 @@ namespace ExercicioMVC.Models
 		{
 			try
 			{
-				string strSql = "INSERT INTO Cliente(NomeCompleto)";
+				string strSql = "INSERT INTO Cliente(NomeCompleto) ";
 					   strSql += " VALUES ('" + nomeCompleto + "')";
 
 				//O método executaSql é um DataTable que vai retornar o ID do registro
@@ -95,7 +95,7 @@ namespace ExercicioMVC.Models
 		{
 			try
 			{
-				string strSql = "SELECT " + colunas + "FROM Cliente";
+				string strSql = "SELECT " + colunas + " FROM Cliente";
 
 				return clsConexao.ExecutarSql(strSql);
 			}

@@ -188,10 +188,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Cliente\listaCliente.cshtml" />
     <Content Include="Views\Cliente\inserirAlterarCliente.cshtml" />
+    <Content Include="Views\Endereco\listaEndereco.cshtml" />
+    <Content Include="Views\Endereco\inserirAlterarEndereco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Endereco\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
