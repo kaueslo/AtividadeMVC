@@ -72,6 +72,21 @@ namespace ExercicioMVC.Controllers
 			}
 		}
 
+		//Método para trazer todos os clientes
+		public DataTable obterTodosClientes(string strConexaoBanco)
+		{
+			try
+			{
+				Models.clsEndereco cls = new Models.clsEndereco(strConexaoBanco);
+
+				return cls.exibirTodosClientes();
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
+
 		public DataTable ObterPorFiltroEndereco(int? idEndereco, string strEndereco, string strBairro, string strCEP,
 											   int? idCliente, string strConexaoBanco)
 		{
@@ -100,6 +115,9 @@ namespace ExercicioMVC.Controllers
 		{
 			Models.clsEndereco modelo = new Models.clsEndereco(Convert.ToString(Session["strConexaoBanco"]));
 
+			//Inserindo a DataTable com os clientes cadastrados
+			modelo.dtEndereco = obterTodosClientes(Convert.ToString(Session["strConexaoBanco"]));
+
 			modelo.strEndereco = modelo;
 
 			return View("inserirAlterarEndereco", modelo);
@@ -108,6 +126,9 @@ namespace ExercicioMVC.Controllers
 		public ActionResult alterarEndereco()
 		{
 			Models.clsEndereco modelo = new Models.clsEndereco(Convert.ToString(Session["strConexaoBanco"]));
+
+			//Inserindo a DataTable com os clientes cadastrados
+			modelo.dtEndereco = obterTodosClientes(Convert.ToString(Session["strConexaoBanco"]));
 
 			modelo.strEndereco = modelo;
 

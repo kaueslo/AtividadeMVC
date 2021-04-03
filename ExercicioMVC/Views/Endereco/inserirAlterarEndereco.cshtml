@@ -57,7 +57,12 @@
 
     <div class="form-group">
         <label for="txtIdCliente">Cliente</label>
-        <input type="number" id="intIdCliente" value="@Model.strEndereco.idCliente" />
+       @foreach (System.Data.DataRow dr in Model.dtCliente.Rows)
+			{
+                <select name="Clientes">
+                    <option id="intIdCliente" value="@dr["idCliente"]">@dr["NomeCompleto"]</option>
+                </select>
+			}
     </div>
 
     <div class="form-group">

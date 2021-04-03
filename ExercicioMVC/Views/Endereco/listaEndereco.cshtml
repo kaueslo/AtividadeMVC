@@ -30,7 +30,7 @@
                 {
                     <tr>
                         <td>@dr["idEndereco"]</td>
-                        <td><a href="@Url.Action("alterarEndereco","Endereco", new { idCliente = Convert.ToString(dr["idEndereco"]) })">@dr["Endereco"]</a></td>
+                        <td><a href="@Url.Action("alterarEndereco","Endereco", new { idEndereco = Convert.ToString(dr["idEndereco"]) })">@dr["Endereco"]</a></td>
                         <td>@dr["Bairro"]</td>
                         <td>@dr["CEP"]</td>
                         <td>@dr["idCliente"]</td>

@@ -20,6 +20,9 @@ namespace ExercicioMVC.Models
 
 		public DataTable dtEndereco = new DataTable();
 
+		//DataTable para ser possível escolher o cliente.
+		public DataTable dtCliente = new DataTable();
+
 		public clsEndereco strEndereco;
 
 		public clsEndereco(string strConexaoBanco)
@@ -155,6 +158,23 @@ namespace ExercicioMVC.Models
 				{
 					return null;
 				}
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		//Criando um método para exibir todos os clientes na view de endereços
+		//Assim vai ser possível selecionar ele
+		public DataTable exibirTodosClientes()
+		{
+			try
+			{
+				string strSql = "SELECT idCliente, NomeCompleto FROM Cliente";
+
+
+				return clsConexao.ExecutarSql(strSql);
 			}
 			catch(Exception ex)
 			{

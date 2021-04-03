@@ -65,21 +65,6 @@ namespace ExercicioMVC.Controllers
 			}
 		}
 
-        //Método para trazer todos os dados preenchidos com todos os dados clsCliente
-        public DataTable obterTodosclsCliente(string strConexaoBanco)
-		{
-			try
-			{
-                Models.clsCliente cls = new Models.clsCliente(strConexaoBanco);
-
-                return cls.ObterTodos();
-			}
-            catch(Exception ex)
-			{
-                throw ex;
-			}
-		}
-
         //Método para trazer os dados com filtros
         public DataTable ObterPorFiltroCliente(int? intIdCliente, string strNomeCompleto, string strConexaoBanco)
 		{
