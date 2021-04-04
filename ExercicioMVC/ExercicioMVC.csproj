@@ -185,7 +185,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Inicial\Index.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Cliente\listaCliente.cshtml" />
     <Content Include="Views\Cliente\inserirAlterarCliente.cshtml" />
     <Content Include="Views\Endereco\listaEndereco.cshtml" />

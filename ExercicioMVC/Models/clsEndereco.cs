@@ -85,7 +85,8 @@ namespace ExercicioMVC.Models
 		{
 			try
 			{
-				string strSql = "SELECT " + colunas + " FROM Endereco";
+				string strSql = "SELECT A.idEndereco, A.Endereco, A.Bairro, A.CEP, B.NomeCompleto FROM Endereco A";
+					   strSql += " INNER JOIN Cliente B ON A.idCliente = B.idCliente";
 
 				return clsConexao.ExecutarSql(strSql);
 			}

@@ -88,9 +88,6 @@ namespace ExercicioMVC.Controllers
             //Que está salva na memória
             Models.clsCliente modelo = new Models.clsCliente(Convert.ToString(Session["strConexaoBanco"]));
 
-            //Preencho a DataTable dtCliente, que pertence ao Model com o método obterTodos
-            modelo.dtCliente = obterTodosclsCliente(Convert.ToString(Session["strConexaoBanco"]));
-
             //Retorna para a View o modelo que foi criado com a DataTable
 
             return View(modelo);
